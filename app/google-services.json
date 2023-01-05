@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "163041851938",
+    "project_id": "homattic-life",
+    "storage_bucket": "homattic-life.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163041851938:android:f1620c8621f2ed552ca87b",
+        "android_client_info": {
+          "package_name": "com.homatticlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163041851938-1ghbnk47tlgpqgcp1l9q0v97b7uddoqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWEMwugC4TR2rwFHocCQndk8-kTadS89w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163041851938-1ghbnk47tlgpqgcp1l9q0v97b7uddoqg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
