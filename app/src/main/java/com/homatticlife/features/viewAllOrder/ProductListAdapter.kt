@@ -553,7 +553,9 @@ class ProductListAdapter(
             if( !categoryList!!.get(adapterPosition).product_discount_show.equals("")){
                 var newRate=(categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() * (categoryList!!.get(adapterPosition).product_discount_show)!!.toDouble()
                 var newRatewithdis = newRate/100
-                itemView.edt_rt_product_new_list.setText(newRatewithdis.toString())
+                var oriPrice = (categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() - newRatewithdis
+                itemView.edt_rt_product_new_list.setText(oriPrice.toString())
+//                itemView.edt_rt_product_new_list.setText(newRatewithdis.toString())
             }else{
                 itemView.edt_rt_product_new_list.setText("")
             }}
@@ -574,7 +576,9 @@ class ProductListAdapter(
                             if(mrpShow!!.isNotEmpty()|| !mrpShow.equals("")|| !mrpShow.equals("0")|| !mrpShow.equals("0.0")||!mrpShow.equals("0.00")){
                                 var newRate=(categoryList!!.get(adapterPosition).product_mrp_show)!!.toString().trim().toDouble() * (itemView.edt_discount_product_new_list.text.toString().toDouble())
                                 var newRatewithdis = newRate/100
-                                itemView.edt_rt_product_new_list.setText(newRatewithdis.toString())
+                                var oriPrice = (categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() - newRatewithdis
+                                itemView.edt_rt_product_new_list.setText(oriPrice.toString())
+//                                itemView.edt_rt_product_new_list.setText(newRatewithdis.toString())
                             }
                             else{
                                 itemView.edt_rt_product_new_list.setText("")
