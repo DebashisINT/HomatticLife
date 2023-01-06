@@ -19,6 +19,7 @@ import com.homatticlife.app.Pref
 import com.homatticlife.app.domain.ProductListEntity
 import com.homatticlife.app.domain.ProductRateEntity
 import com.homatticlife.app.utils.AppUtils
+import com.homatticlife.app.utils.CustomSpecialTextWatcher2
 import com.homatticlife.features.DecimalDigitsInputFilter
 import com.homatticlife.features.dashboard.presentation.DashboardActivity
 import com.homatticlife.features.login.model.productlistmodel.ProductRateDataModel
@@ -561,7 +562,7 @@ class ProductListAdapter(
             }}
 
             try{
-                itemView.edt_discount_product_new_list.addTextChangedListener(object : TextWatcher {
+              /*  itemView.edt_discount_product_new_list.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(p0: Editable?) {
                     }
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -586,7 +587,35 @@ class ProductListAdapter(
 
                         }
                     }
-                })
+                })*/
+
+                itemView.edt_discount_product_new_list.addTextChangedListener(
+                    CustomSpecialTextWatcher2(itemView.edt_discount_product_new_list, 2, 2, object : CustomSpecialTextWatcher2.GetCustomTextChangeListener {
+                        override fun beforeTextChange(text: String) {
+
+                        }
+
+                        override fun customTextChange(p0: String) {
+                            var strDis :String = p0!!.toString()
+                            if (strDis!!.equals("") || strDis.equals("0")){
+                                return
+                            }
+                            else{
+                                var mrpShow = categoryList!!.get(adapterPosition).product_mrp_show
+                                if(mrpShow!!.isNotEmpty()|| !mrpShow.equals("")|| !mrpShow.equals("0")|| !mrpShow.equals("0.0")||!mrpShow.equals("0.00")){
+                                    var newRate=(categoryList!!.get(adapterPosition).product_mrp_show)!!.toString().trim().toDouble() * (itemView.edt_discount_product_new_list.text.toString().toDouble())
+                                    var newRatewithdis = newRate/100
+                                    var oriPrice = (categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() - newRatewithdis
+                                    itemView.edt_rt_product_new_list.setText(oriPrice.toString())
+                                }
+                                else{
+                                    itemView.edt_rt_product_new_list.setText("")
+                                }
+
+                            }
+                        }
+                    })
+                )
             }catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
