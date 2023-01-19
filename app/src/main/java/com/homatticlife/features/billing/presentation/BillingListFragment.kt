@@ -397,7 +397,8 @@ class BillingListFragment : BaseFragment(), View.OnClickListener {
                 srNo = (i + 1).toString() + " "
                 item = productList!!.get(i).product_name + "       "
                 qty = productList!!.get(i).qty + " "
-                unit = "KG" + " "
+                //unit = "KG" + " "
+                unit =  productList!!.get(i).watt.toString()+ " "
                 rate = getString(R.string.rupee_symbol_with_space) + " " + productList!!.get(i).rate + " "
                 amount = getString(R.string.rupee_symbol_with_space) + " " + productList!!.get(i).total_price + " "
 

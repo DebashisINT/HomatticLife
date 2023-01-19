@@ -1423,7 +1423,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     if(AppUtils.isOnline(mContext)){
 //                                        if(Pref.isMultipleVisitEnable)
-                                            AppDatabase.getDBInstance()!!.shopActivityDao().updateIsUploaded(true, addShop.shop_id!!,AppUtils.getCurrentDateForShopActi())
+                                            //AppDatabase.getDBInstance()!!.shopActivityDao().updateIsUploaded(true, addShop.shop_id!!,AppUtils.getCurrentDateForShopActi())
                                             AppDatabase.getDBInstance()!!.shopActivityDao().updateIsNewshopUploaded(true, addShop.shop_id!!,AppUtils.getCurrentDateForShopActi())
                                     }
                                     doAsync {
@@ -1524,7 +1524,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     if(AppUtils.isOnline(mContext)){
 //                                        if(Pref.isMultipleVisitEnable)
-                                        AppDatabase.getDBInstance()!!.shopActivityDao().updateIsUploaded(true, addShop.shop_id!!,AppUtils.getCurrentDateForShopActi())
+                                        //AppDatabase.getDBInstance()!!.shopActivityDao().updateIsUploaded(true, addShop.shop_id!!,AppUtils.getCurrentDateForShopActi())
                                         AppDatabase.getDBInstance()!!.shopActivityDao().updateIsNewshopUploaded(true, addShop.shop_id!!,AppUtils.getCurrentDateForShopActi())
                                     }
                                     doAsync {
