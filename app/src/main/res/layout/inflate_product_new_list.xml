@@ -97,26 +97,32 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <com.google.android.material.textfield.TextInputLayout
+                        <TextView
+                            android:id="@+id/edt_discount_product_new_list"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+                            android:gravity="center"/>
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edt_discount_product_new_list"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@android:color/transparent"
-                                android:enabled="true"
-                                android:gravity="center"
-                                android:hint="Discount(%)"
-                                android:imeOptions="actionNext"
-                                android:inputType="numberDecimal"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_9sdp" />
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_weight="1"-->
+<!--                            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">-->
 
-                        </com.google.android.material.textfield.TextInputLayout>
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:id="@+id/edt_discount_product_new_list"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@android:color/transparent"-->
+<!--                                android:enabled="true"-->
+<!--                                android:gravity="center"-->
+<!--                                android:hint="Discount(%)"-->
+<!--                                android:imeOptions="actionNext"-->
+<!--                                android:inputType="numberDecimal"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="@dimen/_9sdp" />-->
+
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
 
                         <View
                             android:layout_width="match_parent"

@@ -13499,6 +13499,16 @@ class DashboardActivity : BaseActivity(), View.OnClickListener, BaseNavigation, 
                             }
                         }
                         else {
+
+
+                            val shopActiList = AppDatabase.getDBInstance()!!.shopActivityDao().getShopForDay(syncedShopList[k].shop_id.toString(),AppUtils.getCurrentDateForShopActi()).firstOrNull()
+                            if(shopActiList!=null){
+                                val endTimeStamp = System.currentTimeMillis().toString()
+                                val totalMinute = AppUtils.getMinuteFromTimeStamp(shopActiList.startTimeStamp, endTimeStamp)
+                                val duration = AppUtils.getTimeFromTimeSpan(shopActiList.startTimeStamp, endTimeStamp)
+                                AppDatabase.getDBInstance()!!.shopActivityDao().updateTimeDurationForDayOfShop(shopActiList.shopid.toString(), duration, AppUtils.getCurrentDateForShopActi(), shopActiList.startTimeStamp)
+                            }
+
                             AppDatabase.getDBInstance()!!.shopActivityDao().updateDurationCalculatedStatusByShopID(syncedShopList[k].shop_id.toString(),true,AppUtils.getCurrentDateForShopActi())
                             val shopActivity = AppDatabase.getDBInstance()!!.shopActivityDao().durationAvailableForShopList(syncedShopList[k].shop_id, true, false)
 
@@ -13692,6 +13702,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener, BaseNavigation, 
                                         })
                                 )
                             }else{
+                                BaseActivity.isShopActivityUpdating = false
                                 simpleDialogProcess.dismiss()
                                 (mContext as DashboardActivity).loadFragment(FragType.LogoutSyncFragment, false, "")
                             }

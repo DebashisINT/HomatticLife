@@ -840,12 +840,12 @@ class NewOrderListFragment : BaseFragment() {
             document.add(Contact)
 
 
-            val PanNo = Paragraph("PAN                     :      " + shop?.shopOwner_PAN!!, font1)
+            val PanNo = Paragraph("PAN                     :      " + if(shop?.shopOwner_PAN == null) "" else shop?.shopOwner_PAN, font1)
             PanNo.alignment = Element.ALIGN_LEFT
             PanNo.spacingAfter = 2f
             document.add(PanNo)
 
-            val GSTNNo = Paragraph("GSTIN                  :      " + shop?.gstN_Number, font1)
+            val GSTNNo = Paragraph("GSTIN                  :      " + if(shop?.gstN_Number==null) "" else shop?.gstN_Number, font1)
             GSTNNo.alignment = Element.ALIGN_LEFT
             GSTNNo.spacingAfter = 2f
             document.add(GSTNNo)

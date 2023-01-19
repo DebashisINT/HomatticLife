@@ -1235,7 +1235,7 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
             tableHeaderOrder.addCell(cell11)
 
 
-            val cell222 = PdfPCell(Phrase("Invoice No     :     " + invoiceNo + "\n\n" + "Invoice Date  :     " + invoiceDate, font))
+            val cell222 = PdfPCell(Phrase("Invoice No     :     " + invoiceNo + "\n\n" + "Invoice Date  :     " + AppUtils.getFormatedDateNew(invoiceDate,"yyyy-mm-dd", "dd-mm-yyyy"), font))
             cell222.setHorizontalAlignment(Element.ALIGN_LEFT);
             cell222.borderColor = BaseColor.GRAY
             cell222.paddingBottom=10f
@@ -1256,7 +1256,7 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
 //            tableRows.addCell(cellBodySl1)
 
 
-            var cellBody22 = PdfPCell(Phrase(InvoicDate + invoiceNo + "Invoice Date: " + invoiceDate, font))
+            var cellBody22 = PdfPCell(Phrase(InvoicDate + invoiceNo + "Invoice Date: " + AppUtils.getFormatedDateNew(invoiceDate,"yyyy-mm-dd", "dd-mm-yyyy"), font))
             cellBody22.setHorizontalAlignment(Element.ALIGN_LEFT)
             cellBody22.borderColor = BaseColor.GRAY
 //            tableRows.addCell(cellBody22)
@@ -1293,6 +1293,16 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
             Contact.alignment = Element.ALIGN_LEFT
             Contact.spacingAfter = 2f
             document.add(Contact)
+
+            val PanNo = Paragraph("PAN                     :      " + if(shop?.shopOwner_PAN == null) "" else shop?.shopOwner_PAN, font1)
+            PanNo.alignment = Element.ALIGN_LEFT
+            PanNo.spacingAfter = 2f
+            document.add(PanNo)
+
+            val GSTNNo = Paragraph("GSTIN                  :      " + if(shop?.gstN_Number==null) "" else shop?.gstN_Number, font1)
+            GSTNNo.alignment = Element.ALIGN_LEFT
+            GSTNNo.spacingAfter = 2f
+            document.add(GSTNNo)
 
 
             if (Pref.isPatientDetailsShowInOrder) {

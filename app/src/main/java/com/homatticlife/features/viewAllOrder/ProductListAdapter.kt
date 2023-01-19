@@ -1,5 +1,6 @@
 package com.homatticlife.features.viewAllOrder
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.text.*
@@ -548,7 +549,8 @@ class ProductListAdapter(
                 itemView.tv_mrp_product_new_list.visibility = View.GONE
             }
             if(Pref.IsDiscountInOrder) {
-                itemView.edt_discount_product_new_list.setText(categoryList!!.get(adapterPosition).product_discount_show)
+                //itemView.edt_discount_product_new_list.setText(categoryList!!.get(adapterPosition).product_discount_show)
+                itemView.edt_discount_product_new_list.text = "Discount : "+categoryList!!.get(adapterPosition).product_discount_show
                 itemView.ll_pro_nw_list_disct_root.visibility = View.VISIBLE
             }else{
                 itemView.edt_discount_product_new_list.visibility = View.GONE
@@ -594,12 +596,14 @@ class ProductListAdapter(
                     }
                 })*/
                 // 3.0  AppV 4.0.6  ProductListAdapter decimal input handle
+                /*
                 itemView.edt_discount_product_new_list.addTextChangedListener(
                     CustomSpecialTextWatcher2(itemView.edt_discount_product_new_list, 2, 2, object : CustomSpecialTextWatcher2.GetCustomTextChangeListener {
                         override fun beforeTextChange(text: String) {
 
                         }
 
+                        @SuppressLint("SuspiciousIndentation")
                         override fun customTextChange(p0: String) {
                             var strDis :String = p0!!.toString()
 //                            if (strDis!!.equals("") || strDis.equals("0")){ // 2.0  AppV 4.0.6  ProductListAdapter 0 discount reflect
@@ -621,7 +625,7 @@ class ProductListAdapter(
                             }
                         }
                     })
-                )
+                )*/
                 // 3.0  AppV 4.0.6  ProductListAdapter decimal input handle
             }catch (e: IllegalStateException) {
                 e.printStackTrace()
