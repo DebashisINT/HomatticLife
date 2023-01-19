@@ -269,9 +269,11 @@ class DistributorwiseorderlistFragment : BaseFragment(), View.OnClickListener {
 
                    objOrderList.shop_id=AppDatabase.getDBInstance()!!.orderDetailsListDao().getSingleOrder(ordL.get(j).order_id.toString()).shop_id.toString()
                    var objShopDtls = AppDatabase.getDBInstance()?.addShopEntryDao()?.getShopByIdN(objOrderList.shop_id)!!
-                   objOrderList.shop_name = objShopDtls.shopName
-                   objOrderList.shop_addr = objShopDtls.address
-                   objOrderList.shop_ph = objShopDtls.ownerContactNumber
+                    objOrderList.shop_name = objShopDtls.shopName
+                    objOrderList.shop_addr = objShopDtls.address
+                    objOrderList.shop_ph = objShopDtls.ownerContactNumber
+                    objOrderList.shopOwner_PAN = objShopDtls.shopOwner_PAN
+                    objOrderList.gstN_Number = objShopDtls.gstN_Number
 
                    var objProductsL = AppDatabase.getDBInstance()!!.orderProductListDao().getDataAccordingToOrderId(objOrderList.ordNo)
                    for(k in 0..objProductsL.size-1){
@@ -299,7 +301,7 @@ class DistributorwiseorderlistFragment : BaseFragment(), View.OnClickListener {
 
     data class PdfDataRoot(var distName:String="",var  ordList:ArrayList<OrderList> = ArrayList())
     data class OrderList(var ordNo:String="",var ordDate:String="",var invNo:String="",var invDate:String="",var shop_id:String="",var shop_name:String="",
-                         var shop_addr:String="",var shop_ph:String="",var productList:ArrayList<ProductList> = ArrayList())
+                         var shop_addr:String="",var shop_ph:String="",var shopOwner_PAN:String="",var gstN_Number:String="",var productList:ArrayList<ProductList> = ArrayList())
     data class ProductList(var item_desc:String="",var qty:String="",var unit:String="",var rate:String="",var amt:String="")
 
     private fun saveDataAsPdf(objData: PdfDataRoot){
@@ -405,6 +407,17 @@ class DistributorwiseorderlistFragment : BaseFragment(), View.OnClickListener {
                 Contact.alignment = Element.ALIGN_LEFT
                 Contact.spacingAfter = 2f
                 document.add(Contact)
+
+
+                val PanNo = Paragraph("PAN                     :      " + objData.ordList.get(i).shopOwner_PAN, font1)
+                PanNo.alignment = Element.ALIGN_LEFT
+                PanNo.spacingAfter = 2f
+                document.add(PanNo)
+
+                val GSTNNo = Paragraph("GSTIN                  :      " + objData.ordList.get(i).gstN_Number, font1)
+                GSTNNo.alignment = Element.ALIGN_LEFT
+                GSTNNo.spacingAfter = 2f
+                document.add(GSTNNo)
 
 
 

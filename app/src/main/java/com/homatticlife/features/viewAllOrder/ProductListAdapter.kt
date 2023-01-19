@@ -35,6 +35,10 @@ import kotlinx.android.synthetic.main.inflate_product_new_list.view.*
 /**
  * Created by Saikat on 08-11-2018.
  */
+// 1.0  AppV 4.0.6  ProductListAdapter Saheli    06/01/2023 edt_rt_product_new_list off settext blank
+// 2.0  AppV 4.0.6  ProductListAdapter Saheli    06/01/2023 0 discount reflect
+// 3.0  AppV 4.0.6  ProductListAdapter  Saheli    06/01/2023 decimal input handle
+// 4.0  AppV 4.0.6  ProductListAdapter  Saheli    06/01/2023 discount logic correction
 class ProductListAdapter(
     private val context: Context,
     private val workTypeList: ArrayList<ProductListEntity>?,
@@ -419,7 +423,7 @@ class ProductListAdapter(
                     itemView.iv_prod_new_list_cross1.visibility = View.GONE
                     itemView.iv_prod_new_list_tick.visibility = View.GONE
                     itemView.edt_qty_product_new_list.setText("")
-                    itemView.edt_rt_product_new_list.setText("")
+//                    itemView.edt_rt_product_new_list.setText("")// 1.0  AppV 4.0.6  ProductListAdapter edt_rt_product_new_list off settext blank
                     listenerDel.onProductDelClick(categoryList?.get(adapterPosition)!!)
                 }
 
@@ -554,7 +558,7 @@ class ProductListAdapter(
             if( !categoryList!!.get(adapterPosition).product_discount_show.equals("")){
                 var newRate=(categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() * (categoryList!!.get(adapterPosition).product_discount_show)!!.toDouble()
                 var newRatewithdis = newRate/100
-                var oriPrice = (categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() - newRatewithdis
+                var oriPrice = (categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() - newRatewithdis //4.0  AppV 4.0.6  ProductListAdapter discount logic correction
                 itemView.edt_rt_product_new_list.setText(oriPrice.toString())
 //                itemView.edt_rt_product_new_list.setText(newRatewithdis.toString())
             }else{
@@ -562,6 +566,7 @@ class ProductListAdapter(
             }}
 
             try{
+                // 3.0  AppV 4.0.6  ProductListAdapter decimal input handle off old
               /*  itemView.edt_discount_product_new_list.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(p0: Editable?) {
                     }
@@ -588,7 +593,7 @@ class ProductListAdapter(
                         }
                     }
                 })*/
-
+                // 3.0  AppV 4.0.6  ProductListAdapter decimal input handle
                 itemView.edt_discount_product_new_list.addTextChangedListener(
                     CustomSpecialTextWatcher2(itemView.edt_discount_product_new_list, 2, 2, object : CustomSpecialTextWatcher2.GetCustomTextChangeListener {
                         override fun beforeTextChange(text: String) {
@@ -597,7 +602,8 @@ class ProductListAdapter(
 
                         override fun customTextChange(p0: String) {
                             var strDis :String = p0!!.toString()
-                            if (strDis!!.equals("") || strDis.equals("0")){
+//                            if (strDis!!.equals("") || strDis.equals("0")){ // 2.0  AppV 4.0.6  ProductListAdapter 0 discount reflect
+                                if (strDis!!.equals("")){
                                 return
                             }
                             else{
@@ -605,7 +611,7 @@ class ProductListAdapter(
                                 if(mrpShow!!.isNotEmpty()|| !mrpShow.equals("")|| !mrpShow.equals("0")|| !mrpShow.equals("0.0")||!mrpShow.equals("0.00")){
                                     var newRate=(categoryList!!.get(adapterPosition).product_mrp_show)!!.toString().trim().toDouble() * (itemView.edt_discount_product_new_list.text.toString().toDouble())
                                     var newRatewithdis = newRate/100
-                                    var oriPrice = (categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() - newRatewithdis
+                                    var oriPrice = (categoryList!!.get(adapterPosition).product_mrp_show)!!.toDouble() - newRatewithdis//4.0  AppV 4.0.6  ProductListAdapter discount logic correction
                                     itemView.edt_rt_product_new_list.setText(oriPrice.toString())
                                 }
                                 else{
@@ -616,6 +622,7 @@ class ProductListAdapter(
                         }
                     })
                 )
+                // 3.0  AppV 4.0.6  ProductListAdapter decimal input handle
             }catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
